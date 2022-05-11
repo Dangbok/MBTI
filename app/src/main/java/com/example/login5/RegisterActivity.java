@@ -1,32 +1,66 @@
 package com.example.login5;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
+    ImageView iv_iv;
     EditText et_email, et_pass, et_name,et_age, et_mbti,et_myself;
     Button btn_register1;
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference reference; //실시간 데이터베이스 연동 객체
+    private FirebaseStorage storage; //파이어스토어에 접근하기 위해 사용
+    private Uri uri; //갤러리 사진 가져오기 위한 변수
+    private int GALLERY_CODE=10;
+
+    private String[] permissionList = {Manifest.permission.READ_EXTERNAL_STORAGE};
+
+    //권한 체크 함수
+    public void checkPermission() {
+        //현재 버전 6.0 미만이면 종료 --> 6이후 부터 권한 허락
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return;
+
+        //각 권한 허용 여부를 확인
+        for (String permission : permissionList) {
+            int chk = checkCallingOrSelfPermission(permission);
+            //거부 상태라면
+            if (chk == PackageManager.PERMISSION_DENIED) {
+                //사용자에게 권한 허용여부를 확인하는 창을 띄운다.
+                requestPermissions(permissionList, 0); //권한 검사 필요한 것들만 남는다.
+                break;
+            }
+        }
+    }
 
 
     // 액티비티 시작시 처음으로 실행되는 생명주기
@@ -45,8 +79,11 @@ public class RegisterActivity extends AppCompatActivity {
         //파이어베이스 접근 설정
         // user = firebaseAuth.getCurrentUser();
         firebaseAuth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference("Users"); //실시간 데이터베이스
+        storage = FirebaseStorage.getInstance(); //스토리지에 접근하기 위한 인스턴스 선언
         //firebaseDatabase = FirebaseDatabase.getInstance().getReference();
 
+        iv_iv=findViewById(R.id.iv_iv);
         et_email = findViewById(R.id.et_email);
         et_pass = findViewById(R.id.et_pass);
         et_name = findViewById(R.id.et_name);
@@ -56,11 +93,13 @@ public class RegisterActivity extends AppCompatActivity {
         btn_register1=findViewById(R.id.btn_register1);
 
 
+
         //가입버튼 클릭리스너   -->  firebase에 데이터를 저장한다.
         btn_register1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
 
                 //가입 정보 가져오기
                 final String email = et_email.getText().toString().trim();
@@ -69,6 +108,26 @@ public class RegisterActivity extends AppCompatActivity {
                 String age = et_age.getText().toString().trim();
                 String mbti = et_mbti.getText().toString().trim();
                 String myself = et_myself.getText().toString().trim();
+
+                FirebaseStorage storage = FirebaseStorage.getInstance("gs://mbti-matching-users.appspot.com");
+                StorageReference storageRef = storage.getReference();
+                storageRef.child("photo/").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        //이미지 로드 성공시
+
+                        Glide.with(getApplicationContext())
+                                .load(uri)
+                                .into(iv_iv);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        //이미지 로드 실패시
+                        Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
                 //파이어베이스에 신규계정 등록하기
