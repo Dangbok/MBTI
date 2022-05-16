@@ -17,9 +17,6 @@
         android:theme="@style/Theme.Login5"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ImageActivity"
-            android:exported="false" />
-        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>

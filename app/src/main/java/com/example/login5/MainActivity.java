@@ -1,18 +1,12 @@
 package com.example.login5;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -30,34 +24,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView=findViewById(R.id.recyclerview);
-        recyclerView.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        arrayList=new ArrayList<>();
-
-        database=FirebaseDatabase.getInstance();
-        databaseReference=database.getReference("Users");
-        databaseReference.child("uid").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                arrayList.clear();
-
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    User user=dataSnapshot.getValue(User.class);
-                    arrayList.add(user);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Mainactiviy", String.valueOf(database),error.toException());
-
-            }
-        });
-
-        adapter=new CustomAdapter(arrayList,this);
-        recyclerView.setAdapter(adapter);
+//        recyclerView=findViewById(R.id.recyclerview);
+//        recyclerView.setHasFixedSize(true);
+//        layoutManager=new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+//        arrayList=new ArrayList<>();
+//
+//        database=FirebaseDatabase.getInstance();
+//        databaseReference=database.getReference("Users");
+//
+//        databaseReference.child("uid").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                arrayList.clear();
+//
+//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                    User user=dataSnapshot.getValue(User.class);
+//                    arrayList.add(user);
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Log.e("Mainactiviy", String.valueOf(database),error.toException());
+//
+//            }
+//        });
+//
+//        adapter=new CustomAdapter(arrayList,this);
+//        recyclerView.setAdapter(adapter);
     }
 }

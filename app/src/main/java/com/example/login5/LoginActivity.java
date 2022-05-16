@@ -16,12 +16,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.StorageReference;
 
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth mFirebaseAuth; //파이어베이스 인증처리
-    private DatabaseReference mDatabaseRef; //실시간 데이터베이스 연동 객체
+    private FirebaseAuth firebaseAuth; //파이어베이스 인증처리
+    private DatabaseReference databaseReference; //실시간 데이터베이스 연동 객체
+    private StorageReference storageReference;
     private EditText et_id,et_password; //로그인 입력필드
 
 
@@ -30,8 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mFirebaseAuth= FirebaseAuth.getInstance();
-        mDatabaseRef= FirebaseDatabase.getInstance().getReference("Users");
+        firebaseAuth= FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference("Users");
 
         et_id=findViewById(R.id.et_id);
         et_password=findViewById(R.id.et_password);
@@ -58,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 String userID=et_id.getText().toString().trim();
                 String userPass=et_password.getText().toString().trim();
 
-                mFirebaseAuth.signInWithEmailAndPassword(userID,userPass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                firebaseAuth.signInWithEmailAndPassword(userID,userPass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){

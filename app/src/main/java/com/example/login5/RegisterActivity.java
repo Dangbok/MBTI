@@ -1,24 +1,30 @@
 package com.example.login5;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,20 +34,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
-    ImageView iv_iv;
-    EditText et_email, et_pass, et_name,et_age, et_mbti,et_myself;
-    Button btn_register1;
+    ImageView iv_image;
+    EditText et_email, et_pass, et_name, et_age, et_mbti, et_myself;
+    Button btn_register1,btn_iv;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference reference; //실시간 데이터베이스 연동 객체
     private FirebaseStorage storage; //파이어스토어에 접근하기 위해 사용
-    private Uri uri; //갤러리 사진 가져오기 위한 변수
-    private int GALLERY_CODE=10;
+
+    private String imageUri; //갤러리 사진 가져오기 위한 변수
+    private String pathUri;
+    private File tempFile;
+//    public static final int PICK_FROM_ALBUM = 1;
 
     private String[] permissionList = {Manifest.permission.READ_EXTERNAL_STORAGE};
 
@@ -61,6 +74,21 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
     }
+
+    ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == Activity.RESULT_OK) {
+                // Uri
+                imageUri = String.valueOf(result.getData());
+                pathUri = String.valueOf(result.getData());
+                Glide.with(RegisterActivity.this).load(imageUri).into(iv_image);
+                Log.d(TAG, "photoUri : " + imageUri);
+                iv_image.setImageURI(Uri.parse(imageUri)); // 이미지 띄움
+            }
+
+        }
+    });
 
 
     // 액티비티 시작시 처음으로 실행되는 생명주기
@@ -83,15 +111,33 @@ public class RegisterActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance(); //스토리지에 접근하기 위한 인스턴스 선언
         //firebaseDatabase = FirebaseDatabase.getInstance().getReference();
 
-        iv_iv=findViewById(R.id.iv_iv);
+
+        iv_image = findViewById(R.id.iv_image);
         et_email = findViewById(R.id.et_email);
         et_pass = findViewById(R.id.et_pass);
         et_name = findViewById(R.id.et_name);
         et_age = findViewById(R.id.et_age);
         et_mbti = findViewById(R.id.et_mbti);
         et_myself = findViewById(R.id.et_myself);
-        btn_register1=findViewById(R.id.btn_register1);
+        btn_iv=findViewById(R.id.btn_iv);
+        btn_register1 = findViewById(R.id.btn_register1);
 
+
+        //갤러리접근 리스너
+        iv_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoAlbum();
+            }
+        });
+
+        //사진등록 리스너
+        btn_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                upload();
+            }
+        });
 
 
         //가입버튼 클릭리스너   -->  firebase에 데이터를 저장한다.
@@ -109,26 +155,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String mbti = et_mbti.getText().toString().trim();
                 String myself = et_myself.getText().toString().trim();
 
-                FirebaseStorage storage = FirebaseStorage.getInstance("gs://mbti-matching-users.appspot.com");
-                StorageReference storageRef = storage.getReference();
-                storageRef.child("photo/").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        //이미지 로드 성공시
-
-                        Glide.with(getApplicationContext())
-                                .load(uri)
-                                .into(iv_iv);
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        //이미지 로드 실패시
-                        Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
 
                 //파이어베이스에 신규계정 등록하기
                 firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -137,6 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         //가입 성공시
                         if (task.isSuccessful()) {
+                            final Uri file = Uri.fromFile(new File(pathUri)); // path
 
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             String email = user.getEmail();
@@ -146,6 +173,24 @@ public class RegisterActivity extends AppCompatActivity {
                             String age = et_age.getText().toString().trim();
                             String mbti = et_mbti.getText().toString().trim();
                             String myself = et_myself.getText().toString().trim();
+
+                            // 스토리지에 방생성 후 선택한 이미지 넣음
+                            StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+                                    .child("profile").child("uid/" + file.getLastPathSegment());
+
+                            storageReference.putFile(Uri.parse(imageUri)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            String url = uri.toString();
+                                        }
+                                    });
+                                }
+                            });
+
+
 
                             //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
                             HashMap<Object, String> hashMap = new HashMap<>();
@@ -157,6 +202,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("age", age);
                             hashMap.put("MBTI", mbti);
                             hashMap.put("myself", myself);
+                            hashMap.put("profile", String.valueOf(imageUri));
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference reference = database.getReference("Users");
@@ -170,9 +216,8 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
 
                         } else {
-                            Toast.makeText(RegisterActivity.this, "이미 존재하는 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
                             return;  //해당 메소드 진행을 멈추고 빠져나감.
-
                         }
                     }
                 });
@@ -180,91 +225,68 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    private void gotoAlbum() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+        startForResult.launch(intent);
+        setResult(RESULT_OK,intent);
+    }
+
+    private void upload() {
+        if(iv_image!=null){
+
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyymmdd_hhmmss");
+            String filename=sdf.format(new Date())+".png";
+
+            FirebaseStorage storage=FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference riversRef = storageRef.child("photo/");
+            UploadTask uploadTask = riversRef.putFile(Uri.parse(imageUri));
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(RegisterActivity.this, "사진이 정상적으로 업로드 되었습니다.", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } else{
+            Toast.makeText(RegisterActivity.this, "사진이 정상적으로 업로드 되지 않았습니다.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+//    @Override
+//    protected void OnActivityResult( int requestCode, int resultCode, @Nullable Intent data){
+//        super.onActivityResult(requestCode,resultCode,data);
+//
+//        switch (requestCode) {
+//            case PICK_FROM_ALBUM: { // 코드 일치
+//                // Uri
+//                imageUri = data.getData();
+//                pathUri = getPath(data.getData());
+//                Log.d(TAG, "PICK_FROM_ALBUM photoUri : " + imageUri);
+//                iv_image.setImageURI(imageUri); // 이미지 띄움
+//                break;
+//            }
+//        }
+//    }
+
+//    // uri 절대경로 가져오기
+//    public String getPath(Intent uri) {
+//
+//        String[] proj = {MediaStore.Images.Media.DATA};
+//        CursorLoader cursorLoader = new CursorLoader(this, uri, proj, null, null, null);
+//
+//        Cursor cursor = cursorLoader.loadInBackground();
+//        int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//
+//        cursor.moveToFirst();
+//        return cursor.getString(index);
+//    }
+
     public boolean onSupportNavigateUp(){
         onBackPressed();; // 뒤로가기 버튼이 눌렸을시
         return super.onSupportNavigateUp(); // 뒤로가기 버튼
     }
 }
-
-
-//        et_id = findViewById(R.id.et_id); //아이디
-//        et_password = findViewById(R.id.et_password); //비밀번호
-//        et_name = findViewById(R.id.et_name); //이름
-//        et_mbti = findViewById(R.id.et_mbti); //mbti
-//        btn_im = findViewById(R.id.btn_im); //사진 등록하기 버튼
-//        btn_register = findViewById(R.id.btn_register); //회원가입 버튼
-//        btn_back = findViewById(R.id.btn_back); //뒤로가기 버튼
-//
-//        //파이어베이스 이용
-//        mFirebaseAuth = FirebaseAuth.getInstance();
-//        storage = FirebaseStorage.getInstance();
-//        firebaseDatabase = FirebaseDatabase.getInstance();
-//        mDatabaseRef = FirebaseDatabase.getInstance().getReference("login");
-//
-//        // 모든 정보 입력 후 회원가입 버튼 클릭 시 수행
-//        btn_register.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                // EditText에 현재 입력되어 있는 값을 get(가져온다)해온다.
-//                String userID = et_id.getText().toString().trim();
-//                String userPass = et_password.getText().toString().trim();
-//                String userName = et_name.getText().toString().trim();
-//                String userMbti = et_mbti.getText().toString().trim();
-////                String userMyself = et_myself.getText().toString().trim();
-//
-//                UserAccount userAccount = new UserAccount(String userID, String userPass, String userName, String userMbti);
-//
-//                //Firebase Auth 진행
-//                mFirebaseAuth.createUserWithEmailAndPassword(userID, userPass).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
-//                            UserAccount account = new UserAccount("", userID, userPass, userName, userMbti);
-//                            account.setIdToken(firebaseUser.getUid());
-//                            account.setEmailId(firebaseUser.getEmail());
-//                            account.setPassword(userPass);
-//                            account.setName(firebaseUser.get);
-//                            account.setMbti(firebaseUser.);
-//
-//                            // setValue : 데이터베이스에 insert(삽입) 행위
-//                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
-//
-//                            public void onDataChage (@NonNull DataSnapshot dataSnapshot){
-//                                UserAccount group = dataSnapshot.getValue(UserAccount.class);
-//
-//                                name = group.getName();
-//                                age = group.getAge();
-//                                userMbti[0] = group.getName();
-//                                userMyself[0] = group.getName();
-//
-//
-//                            }
-//                            Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(RegisterActivity.this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                        // 사진 등록하기 버튼 클릭시 이동
-//                        btn_im.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                Intent intent = new Intent(RegisterActivity.this, ImageActivity.class);
-//                                startActivity(intent);  //액티비티 이동
-//                            }
-//                        });
-//
-//                        // 뒤로가기 버튼 클릭시 이동
-//                        btn_back.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                                startActivity(intent);  //액티비티 이동
-//                            }
-//                        });
-//                    }
-//                });
-//            }
-//        });
-//    }
