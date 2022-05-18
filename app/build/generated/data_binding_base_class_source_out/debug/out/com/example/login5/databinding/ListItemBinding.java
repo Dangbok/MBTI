@@ -4,47 +4,51 @@ package com.example.login5.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.login5.R;
-import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ListItemBinding implements ViewBinding {
   @NonNull
-  private final CardView rootView;
+  private final LinearLayout rootView;
 
   @NonNull
-  public final Button chatButton;
+  public final ImageView profile;
 
   @NonNull
-  public final CircleImageView image;
+  public final TextView tvAge;
 
   @NonNull
-  public final TextView mbtiView;
+  public final TextView tvMbti;
 
   @NonNull
-  public final TextView nameView;
+  public final TextView tvMyself;
 
-  private ListItemBinding(@NonNull CardView rootView, @NonNull Button chatButton,
-      @NonNull CircleImageView image, @NonNull TextView mbtiView, @NonNull TextView nameView) {
+  @NonNull
+  public final TextView tvName;
+
+  private ListItemBinding(@NonNull LinearLayout rootView, @NonNull ImageView profile,
+      @NonNull TextView tvAge, @NonNull TextView tvMbti, @NonNull TextView tvMyself,
+      @NonNull TextView tvName) {
     this.rootView = rootView;
-    this.chatButton = chatButton;
-    this.image = image;
-    this.mbtiView = mbtiView;
-    this.nameView = nameView;
+    this.profile = profile;
+    this.tvAge = tvAge;
+    this.tvMbti = tvMbti;
+    this.tvMyself = tvMyself;
+    this.tvName = tvName;
   }
 
   @Override
   @NonNull
-  public CardView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -69,31 +73,37 @@ public final class ListItemBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.chat_button;
-      Button chatButton = ViewBindings.findChildViewById(rootView, id);
-      if (chatButton == null) {
+      id = R.id.profile;
+      ImageView profile = ViewBindings.findChildViewById(rootView, id);
+      if (profile == null) {
         break missingId;
       }
 
-      id = R.id.image;
-      CircleImageView image = ViewBindings.findChildViewById(rootView, id);
-      if (image == null) {
+      id = R.id.tv_age;
+      TextView tvAge = ViewBindings.findChildViewById(rootView, id);
+      if (tvAge == null) {
         break missingId;
       }
 
-      id = R.id.mbtiView;
-      TextView mbtiView = ViewBindings.findChildViewById(rootView, id);
-      if (mbtiView == null) {
+      id = R.id.tv_mbti;
+      TextView tvMbti = ViewBindings.findChildViewById(rootView, id);
+      if (tvMbti == null) {
         break missingId;
       }
 
-      id = R.id.nameView;
-      TextView nameView = ViewBindings.findChildViewById(rootView, id);
-      if (nameView == null) {
+      id = R.id.tv_myself;
+      TextView tvMyself = ViewBindings.findChildViewById(rootView, id);
+      if (tvMyself == null) {
         break missingId;
       }
 
-      return new ListItemBinding((CardView) rootView, chatButton, image, mbtiView, nameView);
+      id = R.id.tv_name;
+      TextView tvName = ViewBindings.findChildViewById(rootView, id);
+      if (tvName == null) {
+        break missingId;
+      }
+
+      return new ListItemBinding((LinearLayout) rootView, profile, tvAge, tvMbti, tvMyself, tvName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

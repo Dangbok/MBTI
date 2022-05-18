@@ -111,9 +111,6 @@ attr actionProviderClass
 attr actionTextColorAlpha
 attr actionViewClass
 attr activityChooserViewStyle
-attr adSize
-attr adSizes
-attr adUnitId
 attr alertDialogButtonGroupStyle
 attr alertDialogCenterButtons
 attr alertDialogStyle
@@ -1204,8 +1201,6 @@ attr yearStyle
 attr yearTodayStyle
 bool abc_action_bar_embed_tabs
 bool abc_config_actionMenuItemAllCaps
-bool enable_system_alarm_service_default
-bool enable_system_job_service_default
 bool m3_sys_typescale_body_large_text_all_caps
 bool m3_sys_typescale_body_medium_text_all_caps
 bool m3_sys_typescale_body_small_text_all_caps
@@ -1222,7 +1217,6 @@ bool m3_sys_typescale_title_large_text_all_caps
 bool m3_sys_typescale_title_medium_text_all_caps
 bool m3_sys_typescale_title_small_text_all_caps
 bool mtrl_btn_textappearance_all_caps
-bool workmanager_test_configuration
 color abc_background_cache_hint_selector_material_dark
 color abc_background_cache_hint_selector_material_light
 color abc_btn_colored_borderless_text_material
@@ -1921,8 +1915,6 @@ dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
 dimen action_bar_size
-dimen activity_horizontal_margin
-dimen activity_vertical_margin
 dimen appcompat_dialog_background_inset
 dimen browser_actions_context_menu_max_width
 dimen browser_actions_context_menu_min_padding
@@ -2559,7 +2551,6 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
-drawable ic_person
 drawable ic_search
 drawable image_1
 drawable image_2
@@ -2604,6 +2595,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable selection_band_overlay
 drawable test_custom_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
@@ -2613,6 +2605,7 @@ id BOTTOM_END
 id BOTTOM_START
 id CTRL
 id FUNCTION
+id FirstFragment
 id META
 id NO_DEBUG
 id SHIFT
@@ -2620,6 +2613,7 @@ id SHOW_ALL
 id SHOW_PATH
 id SHOW_PROGRESS
 id SYM
+id SecondFragment
 id TOP_END
 id TOP_START
 id WebView
@@ -2661,6 +2655,8 @@ id action0
 id actionDown
 id actionDownUp
 id actionUp
+id action_FirstFragment_to_SecondFragment
+id action_SecondFragment_to_FirstFragment
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -2716,7 +2712,6 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
-id btn_ima
 id btn_login
 id btn_mbti
 id btn_register
@@ -2733,6 +2728,7 @@ id center_vertical
 id chain
 id chain2
 id chains
+id chatList
 id chat_button
 id checkbox
 id checked
@@ -2829,7 +2825,6 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
-id filterBtn
 id filterTabsLayout
 id filterTabsLayout2
 id filterTabsLayout3
@@ -2885,7 +2880,7 @@ id item3
 id item4
 id item_touch_helper_previous_elevation
 id iv
-id iv_im
+id iv_image
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -2959,6 +2954,7 @@ id mtrl_view_tag_bottom_padding
 id multiply
 id nameView
 id nav_controller_view_tag
+id nav_graph
 id nav_host_fragment_container
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
@@ -2998,6 +2994,7 @@ id percent
 id pin
 id position
 id postLayout
+id profile
 id progress_circular
 id progress_horizontal
 id radio
@@ -3035,6 +3032,7 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id shapeImage
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -3125,6 +3123,10 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tv_age
+id tv_mbti
+id tv_myself
+id tv_name
 id unchecked
 id uniform
 id unlabeled
@@ -3235,7 +3237,6 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_image
 layout activity_login
 layout activity_main
 layout activity_mbti
@@ -3262,6 +3263,7 @@ layout list_item
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
+layout main_item
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider
@@ -3341,9 +3343,10 @@ layout text_view_with_theme_line_height
 layout text_view_without_line_height
 menu example_menu
 menu example_menu2
-menu search_item
+menu menu_item
 mipmap ic_launcher
 mipmap ic_launcher_round
+navigation nav_graph
 plurals mtrl_badge_content_description
 raw keep
 string abc_action_bar_home_description
@@ -3512,10 +3515,6 @@ string search_menu_title
 string second_fragment_label
 string status_bar_notification_info_overflow
 string title_activity_home
-string title_activity_main2
-string title_dashboard
-string title_home
-string title_notifications
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AndroidThemeColorAccentYellow
@@ -3524,7 +3523,6 @@ style Animation_AppCompat_DropDownUp
 style Animation_AppCompat_Tooltip
 style Animation_Design_BottomSheetDialog
 style Animation_MaterialComponents_BottomSheetDialog
-style AppTheme
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog
@@ -4022,7 +4020,6 @@ style Theme_Design_Light
 style Theme_Design_Light_BottomSheetDialog
 style Theme_Design_Light_NoActionBar
 style Theme_Design_NoActionBar
-style Theme_IAPTheme
 style Theme_Login5
 style Theme_Login5_AppBarOverlay
 style Theme_Login5_NoActionBar
@@ -4552,7 +4549,6 @@ styleable ActionMenuView
 styleable ActionMode background backgroundSplit closeItemLayout height subtitleTextStyle titleTextStyle
 styleable ActivityChooserView expandActivityOverflowButtonDrawable initialActivityCount
 styleable ActivityNavigator android_name action data dataPattern targetPackage
-styleable AdsAttrs adSize adSizes adUnitId
 styleable AlertDialog android_layout buttonIconDimen buttonPanelSideLayout listItemLayout listLayout multiChoiceItemLayout showTitle singleChoiceItemLayout
 styleable AnimatedStateListDrawableCompat android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable AnimatedStateListDrawableItem android_id android_drawable

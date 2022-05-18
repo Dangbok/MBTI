@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -41,9 +42,13 @@ public final class ActivityRegisterBinding implements ViewBinding {
   @NonNull
   public final EditText etPass;
 
+  @NonNull
+  public final ImageView ivImage;
+
   private ActivityRegisterBinding(@NonNull ConstraintLayout rootView, @NonNull Button btnRegister1,
       @NonNull EditText etAge, @NonNull EditText etEmail, @NonNull EditText etMbti,
-      @NonNull EditText etMyself, @NonNull EditText etName, @NonNull EditText etPass) {
+      @NonNull EditText etMyself, @NonNull EditText etName, @NonNull EditText etPass,
+      @NonNull ImageView ivImage) {
     this.rootView = rootView;
     this.btnRegister1 = btnRegister1;
     this.etAge = etAge;
@@ -52,6 +57,7 @@ public final class ActivityRegisterBinding implements ViewBinding {
     this.etMyself = etMyself;
     this.etName = etName;
     this.etPass = etPass;
+    this.ivImage = ivImage;
   }
 
   @Override
@@ -123,8 +129,14 @@ public final class ActivityRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.iv_image;
+      ImageView ivImage = ViewBindings.findChildViewById(rootView, id);
+      if (ivImage == null) {
+        break missingId;
+      }
+
       return new ActivityRegisterBinding((ConstraintLayout) rootView, btnRegister1, etAge, etEmail,
-          etMbti, etMyself, etName, etPass);
+          etMbti, etMyself, etName, etPass, ivImage);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

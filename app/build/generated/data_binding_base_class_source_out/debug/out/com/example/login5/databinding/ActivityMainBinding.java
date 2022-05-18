@@ -49,9 +49,6 @@ public final class ActivityMainBinding implements ViewBinding {
   public final Button estpFilter;
 
   @NonNull
-  public final Button filterBtn;
-
-  @NonNull
   public final LinearLayout filterTabsLayout;
 
   @NonNull
@@ -99,7 +96,7 @@ public final class ActivityMainBinding implements ViewBinding {
   private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull Button allFilter,
       @NonNull Button enfjFilter, @NonNull Button enfpFilter, @NonNull Button entjFilter,
       @NonNull Button entpFilter, @NonNull Button esfjFilter, @NonNull Button esfpFilter,
-      @NonNull Button estjFilter, @NonNull Button estpFilter, @NonNull Button filterBtn,
+      @NonNull Button estjFilter, @NonNull Button estpFilter,
       @NonNull LinearLayout filterTabsLayout, @NonNull LinearLayout filterTabsLayout2,
       @NonNull LinearLayout filterTabsLayout3, @NonNull LinearLayout filterTabsLayout4,
       @NonNull LinearLayout filterTabsLayout5, @NonNull Button infjFilter,
@@ -116,7 +113,6 @@ public final class ActivityMainBinding implements ViewBinding {
     this.esfpFilter = esfpFilter;
     this.estjFilter = estjFilter;
     this.estpFilter = estpFilter;
-    this.filterBtn = filterBtn;
     this.filterTabsLayout = filterTabsLayout;
     this.filterTabsLayout2 = filterTabsLayout2;
     this.filterTabsLayout3 = filterTabsLayout3;
@@ -215,12 +211,6 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.filterBtn;
-      Button filterBtn = ViewBindings.findChildViewById(rootView, id);
-      if (filterBtn == null) {
-        break missingId;
-      }
-
       id = R.id.filterTabsLayout;
       LinearLayout filterTabsLayout = ViewBindings.findChildViewById(rootView, id);
       if (filterTabsLayout == null) {
@@ -312,10 +302,10 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((LinearLayout) rootView, allFilter, enfjFilter, enfpFilter,
-          entjFilter, entpFilter, esfjFilter, esfpFilter, estjFilter, estpFilter, filterBtn,
-          filterTabsLayout, filterTabsLayout2, filterTabsLayout3, filterTabsLayout4,
-          filterTabsLayout5, infjFilter, infpFilter, intjFilter, intpFilter, isfjFilter, isfpFilter,
-          istjFilter, istpFilter, recview, toolbar);
+          entjFilter, entpFilter, esfjFilter, esfpFilter, estjFilter, estpFilter, filterTabsLayout,
+          filterTabsLayout2, filterTabsLayout3, filterTabsLayout4, filterTabsLayout5, infjFilter,
+          infpFilter, intjFilter, intpFilter, isfjFilter, isfpFilter, istjFilter, istpFilter,
+          recview, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
