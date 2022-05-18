@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private boolean dataSet = false;
     private RecyclerView messagesRecyclerView;
     private MessagesAdapter messagesAdapter;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://chatapplication-fdc7f-default-rtdb.firebaseio.com/");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://mbti-matching-users-default-rtdb.firebaseio.com/");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
