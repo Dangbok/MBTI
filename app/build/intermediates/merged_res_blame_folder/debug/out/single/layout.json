@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\document\\MBTI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_mbti.xml",
+        "source": "C:\\document\\MBTI\\app\\src\\main\\res\\layout\\activity_mbti.xml"
+    },
+    {
+        "merged": "C:\\document\\MBTI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\document\\MBTI\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\document\\MBTI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_login.xml",
+        "source": "C:\\document\\MBTI\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\document\\MBTI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_register.xml",
+        "source": "C:\\document\\MBTI\\app\\src\\main\\res\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\document\\MBTI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_image.xml",
+        "source": "C:\\document\\MBTI\\app\\src\\main\\res\\layout\\activity_image.xml"
+    },
+    {
+        "merged": "C:\\document\\MBTI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\list_item.xml",
+        "source": "C:\\document\\MBTI\\app\\src\\main\\res\\layout\\list_item.xml"
+    }
+]
