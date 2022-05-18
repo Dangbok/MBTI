@@ -132,6 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
 //        et_password = findViewById(R.id.et_password); //비밀번호
 //        et_name = findViewById(R.id.et_name); //이름
 //        et_mbti = findViewById(R.id.et_mbti); //mbti
+
 //        btn_im = findViewById(R.id.btn_im); //사진 등록하기 버튼
 //        btn_register = findViewById(R.id.btn_register); //회원가입 버튼
 //        btn_back = findViewById(R.id.btn_back); //뒤로가기 버튼
