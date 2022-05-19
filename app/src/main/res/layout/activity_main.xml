@@ -7,16 +7,224 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+    <!--툴바(제목/필터버튼)-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="60dp"
-        android:gravity="center"
-        android:text="MBTI Matching"
-        android:textColor="#000000"
-        android:textSize="40sp" />
+        android:background="@color/darkerGray"
+        app:menu="@menu/menu_item">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="MBTI"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
+
+    </androidx.appcompat.widget.Toolbar>
 
 
+    <!--    첫번째 레이아웃(filterTabsLayout)-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/filterTabsLayout">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ISTJ"
+            android:textColor="@color/red"
+            android:id="@+id/istjFilter"
+            android:background="@color/darkerGray"
+            android:onClick="istjFilterTapped"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ISTP"
+            android:textColor="@color/red"
+            android:id="@+id/istpFilter"
+            android:background="@color/darkerGray"
+            android:onClick="istpFilterTapped"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ISFJ"
+            android:textColor="@color/red"
+            android:id="@+id/isfjFilter"
+            android:background="@color/darkerGray"
+            android:onClick="isfjFilterTapped"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ISFP"
+            android:textColor="@color/red"
+            android:id="@+id/isfpFilter"
+            android:background="@color/darkerGray"
+            android:onClick="isfpFilterTapped"/>
+
+    </LinearLayout>
+
+    <!--두번째 레이아웃(filterTabsLayout2)-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/filterTabsLayout2">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="INTJ"
+            android:id="@+id/intjFilter"
+            android:background="@color/darkerGray"
+            android:onClick="intjFilterTapped"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="INFJ"
+            android:id="@+id/infjFilter"
+            android:background="@color/darkerGray"
+            android:onClick="infjFilterTapped"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="INTP"
+            android:id="@+id/intpFilter"
+            android:background="@color/darkerGray"
+            android:onClick="intpFilterTapped"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="INFP"
+            android:id="@+id/infpFilter"
+            android:background="@color/darkerGray"
+            android:onClick="infpFilterTapped"/>
+
+    </LinearLayout>
+
+    <!--세번째 레이아웃(filterTabsLayout3)-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/filterTabsLayout3">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ESTJ"
+            android:id="@+id/estjFilter"
+            android:background="@color/darkerGray"
+            android:onClick="estjFilterTapped"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ESFJ"
+            android:id="@+id/esfjFilter"
+            android:background="@color/darkerGray"
+            android:onClick="esfjFilterTapped"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ESTP"
+            android:id="@+id/estpFilter"
+            android:background="@color/darkerGray"
+            android:onClick="estpFilterTapped"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ESFP"
+            android:id="@+id/esfpFilter"
+            android:background="@color/darkerGray"
+            android:onClick="esfpFilterTapped"/>
+    </LinearLayout>
+
+    <!--네번째 레이아웃(filterTabsLayout4)-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/filterTabsLayout4">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ENTJ"
+            android:id="@+id/entjFilter"
+            android:background="@color/darkerGray"
+            android:onClick="entjFilterTapped"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ENFJ"
+            android:id="@+id/enfjFilter"
+            android:background="@color/darkerGray"
+            android:onClick="enfjFilterTapped"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ENTP"
+            android:id="@+id/entpFilter"
+            android:background="@color/darkerGray"
+            android:onClick="entpFilterTapped"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ENFP"
+            android:id="@+id/enfpFilter"
+            android:background="@color/darkerGray"
+            android:onClick="enfpFilterTapped"/>
+    </LinearLayout>
+
+    <!--다섯번째 레이아웃(filterTabsLayout5)-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/filterTabsLayout5">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="All"
+            android:id="@+id/allFilter"
+            android:textColor="@color/red"
+            android:background="@color/darkerGray"
+            android:onClick="allFilterTapped"/>
+
+    </LinearLayout>
+
+
+    <!--리사이클러뷰 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
 
 </LinearLayout>
