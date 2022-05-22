@@ -1,8 +1,10 @@
 package com.example.login5.chat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login5.LoginActivity;
+import com.example.login5.MbtiActivity;
 import com.example.login5.MemoryData;
 import com.example.login5.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +46,8 @@ public class Chat extends AppCompatActivity {
     private String chatKey;
     private RecyclerView chattingRecyclerView;
     private ChatAdapter chatAdapter;
+    private String uid;
+    private String destinationUid;
     //변수 선언
     private boolean loadingFirstTime = true; //boolean 생성
 
@@ -50,11 +57,15 @@ public class Chat extends AppCompatActivity {
         super.onCreate(savedInstanceState); //activity 실행 및 기록 -> setContentView() 호출
         setContentView(R.layout.activity_chat); //activity_chat.xml
 
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid(); //채팅 발신자
+        destinationUid = getIntent().getStringExtra("destinationUid"); //채팅 수신자
+
         final ImageView backBtn = findViewById(R.id.backBtn);
         final TextView nameTV = findViewById(R.id.name);
         final EditText messageEditText = findViewById(R.id.messageEditTxt);
         final CircleImageView profilePic = findViewById(R.id.profilePic);
         final ImageView sendBtn = findViewById(R.id.sendBtn);
+
         //id값을 이용하여 특정 뷰를 받아오고 활용하여 변수 선언
 
         chattingRecyclerView = findViewById(R.id.chattingRecyclerView);
@@ -64,6 +75,7 @@ public class Chat extends AppCompatActivity {
         final String getProfilePic = getIntent().getStringExtra("profile_pic");
         chatKey = getIntent().getStringExtra("chat_key");
         final String getMobile = getIntent().getStringExtra("mobile");
+
         // get data from messages adapter class
 
         getUserMobile = MemoryData.getData(Chat.this);
@@ -82,6 +94,9 @@ public class Chat extends AppCompatActivity {
 
         chattingRecyclerView.setAdapter(chatAdapter);
         //chattingRecyclerView(채팅방)에 chatAdapter 적용
+
+
+
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             //Firebase Database에서 데이터를 읽어옴
@@ -110,23 +125,25 @@ public class Chat extends AppCompatActivity {
                         chatLists.clear(); //chatLists의 모든 요소 제거
 
                         for(DataSnapshot messagesSnapshot : snapshot.child("chat").child(chatKey).child("messages").getChildren()){
-                            //
+
                             if(messagesSnapshot.hasChild("msg") && messagesSnapshot.hasChild("mobile")){
 
                                 final String messageTimestamps = messagesSnapshot.getKey();
                                 final String getMobile = messagesSnapshot.child("mobile").getValue(String.class);
                                 final String getMsg = messagesSnapshot.child("msg").getValue(String.class);
 
+                                //값 호출
+
                                 Timestamp timestamp = new Timestamp(Long.parseLong(messageTimestamps)); //String을 Long으로 변환
                                 Date date = new Date();
                                 Log.d("DATE", date.toString());
                                 SimpleDateFormat simpleTimeFormat = new SimpleDateFormat("hh:mm a", Locale.KOREAN);
                                 Log.d("DATE", simpleTimeFormat.format(date).toString());
+                                ChatList chatList = new ChatList(getMobile, getName, getMsg, simpleTimeFormat.format(date));
+                                chatLists.add(chatList);
                                 //Timestamp
 
-                                ChatList chatList = new ChatList(getMobile, getName, getMsg, simpleTimeFormat.format(date));
 
-                                chatLists.add(chatList);
 
                                 if(loadingFirstTime || Long.parseLong(messageTimestamps) > Long.parseLong(MemoryData.getLastMsgTS(Chat.this, chatKey))){
 
@@ -136,6 +153,7 @@ public class Chat extends AppCompatActivity {
                                     chatAdapter.updateChatList(chatLists);
 
                                     chattingRecyclerView.scrollToPosition(chatLists.size() - 1);
+                                    //스크롤
 
                                 }
                             }
@@ -154,7 +172,7 @@ public class Chat extends AppCompatActivity {
         });
 
 
-        sendBtn.setOnClickListener(new View.OnClickListener() {
+        sendBtn.setOnClickListener(new View.OnClickListener() { //전송 버튼
             @Override
             public void onClick(View v) {
 
@@ -175,7 +193,7 @@ public class Chat extends AppCompatActivity {
             }
         });
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnClickListener(new View.OnClickListener() { //돌아가기 버튼
             @Override
             public void onClick(View v) {
                 finish();

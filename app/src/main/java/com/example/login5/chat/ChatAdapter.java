@@ -18,7 +18,7 @@ import java.util.List;
 
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> {
-
+    //RecyclerView Adapter
 
     private List<ChatList> chatLists;
     private final Context context;
@@ -34,10 +34,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
     @Override
     public ChatAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_adapter_layout, null));
-    }
+    } //레이아웃 생성
 
     @Override
     public void onBindViewHolder(@NonNull ChatAdapter.MyViewHolder holder, int position) {
+        //뷰홀더가 재활용될 때, 실행되는 메서드
 
         ChatList list2 = chatLists.get(position);
 
@@ -61,6 +62,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
     public int getItemCount() {
         return chatLists.size();
     }
+    //아이템 개수를 조회
 
     public void updateChatList(List<ChatList> chatLists){
         this.chatLists = chatLists;

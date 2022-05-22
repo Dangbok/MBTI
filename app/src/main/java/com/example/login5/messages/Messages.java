@@ -1,4 +1,4 @@
-package com.example.login5;
+package com.example.login5.messages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,13 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 
 
-import com.example.login5.messages.MessagesAdapter;
-import com.example.login5.messages.MessagesList;
+import com.example.login5.MemoryData;
+import com.example.login5.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 //채팅방 리스트
 
-public class HomeActivity extends AppCompatActivity {
+public class Messages extends AppCompatActivity {
 
     private final List<MessagesList> messagesLists = new ArrayList<>();
 
@@ -59,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         //set adapter to recyclerview
 
 
-        messagesAdapter = new MessagesAdapter(messagesLists, HomeActivity.this);
+        messagesAdapter = new MessagesAdapter(messagesLists, Messages.this);
         messagesRecyclerView.setAdapter(messagesAdapter);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -117,7 +116,7 @@ public class HomeActivity extends AppCompatActivity {
                                                 for(DataSnapshot chatDataSnapshot : dataSnapshot1.child("messages").getChildren()){
 
                                                     final long getMessageKey = Long.parseLong(chatDataSnapshot.getKey());
-                                                    final long getLastSeenMessage = Long.parseLong(MemoryData.getLastMsgTS(HomeActivity.this, getKey));
+                                                    final long getLastSeenMessage = Long.parseLong(MemoryData.getLastMsgTS(Messages.this, getKey));
 
                                                     lastMessage = chatDataSnapshot.child("msg").getValue(String.class);
                                                     if(getMessageKey > getLastSeenMessage){

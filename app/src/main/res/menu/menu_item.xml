@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/chatList"
+        android:id="@+id/btn_chatlist"
         android:title="Chat"
         android:icon="@drawable/ic_chat"
         app:showAsAction="always"/>

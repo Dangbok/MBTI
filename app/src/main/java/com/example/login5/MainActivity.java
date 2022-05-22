@@ -1,5 +1,6 @@
 package com.example.login5;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +18,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login5.chat.Chat;
+import com.example.login5.chat.ChatList;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -65,7 +69,21 @@ public class MainActivity extends AppCompatActivity {
         initColors();
         lookSelected(allButton);
         selectedFilters.add("all");
+
+//        setContentView(R.layout.main_item);
+//        Button chat_button = findViewById(R.id.chat_button);
+//        chat_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, Chat.class);
+//                startActivity(intent);
+//
+//            }
+//        });
+
     }
+
+
 
     //Button 선언
     private void initWidgets()

@@ -34,6 +34,7 @@
         <activity
             android:name=".MbtiActivity"
             android:exported="false" />
+
     </application>
 
 </manifest>

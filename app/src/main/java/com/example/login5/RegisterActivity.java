@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -52,11 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         //액션 바 등록하기
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("회원가입");
 
-        actionBar.setDisplayHomeAsUpEnabled(true); //뒤로가기버튼
-        actionBar.setDisplayShowHomeEnabled(true); //홈 아이콘
+
 
 
         iv_image = findViewById(R.id.iv_image);

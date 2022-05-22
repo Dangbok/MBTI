@@ -34,9 +34,11 @@ public final class MemoryData {
             FileOutputStream fileOutputStream = context.openFileOutput(chatId+".txt", Context.MODE_PRIVATE);
             fileOutputStream.write(data.getBytes());
             fileOutputStream.close();
+            //바이트 단위 입출력 클래스
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //에러
     }
 
     public static void saveName(String data, Context context) {

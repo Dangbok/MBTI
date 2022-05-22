@@ -9,7 +9,6 @@ public class ChatList {
         this.mobile = mobile;
         this.name = name;
         this.message = message;
-
         this.time = time;
 
     }
@@ -25,8 +24,6 @@ public class ChatList {
     public String getMessage() {
         return message;
     }
-
-
 
     public String getTime() {
         return time;

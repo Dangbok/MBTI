@@ -25,9 +25,10 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyViewHolder> {
+    //RecyclerView Adapter
 
-    private List<MessagesList> messagesLists;
-    private final Context context;
+    private List<MessagesList> messagesLists; //리스트
+    private final Context context; //현재 상태
 
     public MessagesAdapter(List<MessagesList> messagesLists, Context context) {
         this.messagesLists = messagesLists;
@@ -38,10 +39,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
     @Override
     public MessagesAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.messages_adapter_layout, null));
-    }
+    } //레이아웃 생성
 
     @Override
     public void onBindViewHolder(@NonNull MessagesAdapter.MyViewHolder holder, int position) {
+        //재활용 메서드
         MessagesList list2 = messagesLists.get(position);
 
         if(!list2.getProfilePic().isEmpty()){
