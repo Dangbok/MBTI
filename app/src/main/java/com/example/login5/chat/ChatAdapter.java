@@ -39,8 +39,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ChatAdapter.MyViewHolder holder, int position) {
         //뷰홀더가 재활용될 때, 실행되는 메서드
-
-        ChatList list2 = chatLists.get(position);
+        int safePosition = holder.getAbsoluteAdapterPosition();
+        ChatList list2 = chatLists.get(safePosition);
 
         if(list2.getMobile().equals(userMobile)){
             holder.myLayout.setVisibility(View.VISIBLE);

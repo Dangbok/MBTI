@@ -105,12 +105,12 @@ public class Chat extends AppCompatActivity {
                 //onDataChange() = 경로의 전체 내용을 읽고 변경사항을 수신 대기함
                 //DataSnapshot = 메소드가 호출될 때의 Data (data를 꺼내옴)
 
-                if (chatKey.isEmpty()) {
+                if (chatKey == null) {
                     // generate chat key. by default chatKey is 1
                     chatKey = "1";
 
                     if (snapshot.hasChild("chat")) {
-                        chatKey = String.valueOf(snapshot.child("chat").getChildrenCount() + 1);
+                        chatKey = getIntent().getStringExtra("position");
                         //String.valueOf() = 파라미터가 null이면 문자열 "null"을 만들어서 반환
 
                     }

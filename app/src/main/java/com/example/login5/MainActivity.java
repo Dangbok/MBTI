@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login5.chat.Chat;
 import com.example.login5.chat.ChatList;
+import com.example.login5.chat.LinearLayoutManagerWrapper;
+import com.example.login5.messages.Messages;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -52,16 +55,19 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         recyclerView = findViewById(R.id.recview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManagerWrapper(this,  LinearLayoutManager.VERTICAL, false));
 
         FirebaseRecyclerOptions<Filtering> options =
                 new FirebaseRecyclerOptions.Builder<Filtering>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Users"), Filtering.class)
                         .build();
 
-        myAdapter = new MyAdapter(options);
+        myAdapter = new MyAdapter(options, position -> {
+            Intent intent = new Intent(this, Chat.class);
+            intent.putExtra("myId", getIntent().getStringExtra("userId"));
+            startActivity(intent);
+        });
         recyclerView.setAdapter(myAdapter);
-
 
         initWidgets();
         setupData();
@@ -191,9 +197,19 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
         return  super.onCreateOptionsMenu(menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.btn_chatlist) {
+            Intent intent = new Intent(this, Messages.class);
+            intent.putExtra("userId", getIntent().getStringExtra("userId"));
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private  void mysearch(String str){
 
         FirebaseRecyclerOptions<Filtering> options =
@@ -201,7 +217,11 @@ public class MainActivity extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("mbti").startAt(str).endAt(str+"\uf8ff"), Filtering.class)
                         .build();
 
-        myAdapter = new MyAdapter(options);
+        myAdapter = new MyAdapter(options, position -> {
+            Intent intent = new Intent(this, Chat.class);
+            intent.putExtra("myId", getIntent().getStringExtra("userId"));
+            startActivity(intent);
+        });
         myAdapter.startListening();
         recyclerView.setAdapter(myAdapter);
     }
@@ -410,7 +430,12 @@ public class MainActivity extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("mbti"), Filtering.class)
                         .build();
 
-        myAdapter = new MyAdapter(options);
+        myAdapter = new MyAdapter(options, position -> {
+            Intent intent = new Intent(this, Chat.class);
+            intent.putExtra("myId", getIntent().getStringExtra("userId"));
+            intent.putExtra("position", Integer.toString(position + 1));
+            startActivity(intent);
+        });
         myAdapter.startListening();
         recyclerView.setAdapter(myAdapter);
     }

@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -41,7 +42,7 @@ public class Messages extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_chatlist);
 
         final CircleImageView userProfilePic = findViewById(R.id.userProfilePic);
 
@@ -68,7 +69,8 @@ public class Messages extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                final String profilePicUrl = snapshot.child("users").child(mobile).child("profile_pic").getValue(String.class);
+                //String a = snapshot.child("Users").getValue(HashMap.class);
+                final String profilePicUrl = snapshot.child("Users").child(getIntent().getStringExtra("userId")).child("profile").getValue(String.class);
                 if (!TextUtils.isEmpty(profilePicUrl)){
 
                     // set profile pic to circle image view

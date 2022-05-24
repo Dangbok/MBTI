@@ -34,6 +34,10 @@
         <activity
             android:name=".MbtiActivity"
             android:exported="false" />
+        <activity android:name=".chat.Chat"
+            android:exported="false"/>
+        <activity android:name=".messages.Messages"
+            android:exported="false"/>
 
     </application>
 
