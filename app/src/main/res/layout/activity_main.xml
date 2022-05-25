@@ -12,212 +12,178 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/darkerGray"
+        android:background="@color/colorPrimary"
         app:menu="@menu/menu_item">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="MBTI"
-            android:gravity="center"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="30sp" />
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:text="MBTI"-->
+<!--            android:gravity="center"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:textSize="30sp" />-->
 
     </androidx.appcompat.widget.Toolbar>
 
 
     <!--    첫번째 레이아웃(filterTabsLayout)-->
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/filterTabsLayout">
+        android:layout_height="wrap_content">
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ISTJ"
-            android:textColor="@color/red"
-            android:id="@+id/istjFilter"
-            android:background="@color/darkerGray"
-            android:onClick="istjFilterTapped"/>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:background="@color/darkerGray"
+                android:gravity="center"
+                android:text="ISTJ"
+ />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ISTP"
-            android:textColor="@color/red"
-            android:id="@+id/istpFilter"
-            android:background="@color/darkerGray"
-            android:onClick="istpFilterTapped"/>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:background="@color/darkerGray"
+                android:gravity="center"
+                android:text="ISTP" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ISFJ"
-            android:textColor="@color/red"
-            android:id="@+id/isfjFilter"
-            android:background="@color/darkerGray"
-            android:onClick="isfjFilterTapped"/>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ISFJ"
+                android:background="@color/darkerGray" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ISFP"
-            android:textColor="@color/red"
-            android:id="@+id/isfpFilter"
-            android:background="@color/darkerGray"
-            android:onClick="isfpFilterTapped"/>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ISFP"
+                android:background="@color/darkerGray" />
+        </TableRow>
 
-    </LinearLayout>
+    </TableLayout>
 
     <!--두번째 레이아웃(filterTabsLayout2)-->
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/filterTabsLayout2">
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="INTJ"
-            android:id="@+id/intjFilter"
-            android:background="@color/darkerGray"
-            android:onClick="intjFilterTapped"/>
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="INTJ"
+                android:background="@color/darkerGray" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="INFJ"
-            android:id="@+id/infjFilter"
-            android:background="@color/darkerGray"
-            android:onClick="infjFilterTapped"/>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="INFJ"
+                android:background="@color/darkerGray" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="INTP"
-            android:id="@+id/intpFilter"
-            android:background="@color/darkerGray"
-            android:onClick="intpFilterTapped"/>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="INTP"
+                android:background="@color/darkerGray" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="INFP"
-            android:id="@+id/infpFilter"
-            android:background="@color/darkerGray"
-            android:onClick="infpFilterTapped"/>
-
-    </LinearLayout>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="INFP"
+                android:background="@color/darkerGray"/>
+        </TableRow>
+    </TableLayout>
 
     <!--세번째 레이아웃(filterTabsLayout3)-->
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/filterTabsLayout3">
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ESTJ"
-            android:id="@+id/estjFilter"
-            android:background="@color/darkerGray"
-            android:onClick="estjFilterTapped"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ESFJ"
-            android:id="@+id/esfjFilter"
-            android:background="@color/darkerGray"
-            android:onClick="esfjFilterTapped"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ESTP"
-            android:id="@+id/estpFilter"
-            android:background="@color/darkerGray"
-            android:onClick="estpFilterTapped"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ESFP"
-            android:id="@+id/esfpFilter"
-            android:background="@color/darkerGray"
-            android:onClick="esfpFilterTapped"/>
-    </LinearLayout>
+        android:orientation="horizontal">
+        <TableRow>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ESTJ"
+                android:background="@color/darkerGray" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ESFJ"
+                android:background="@color/darkerGray"/>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ESTP"
+                android:background="@color/darkerGray" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ESFP"
+                android:background="@color/darkerGray" />
+        </TableRow>
+    </TableLayout>
 
     <!--네번째 레이아웃(filterTabsLayout4)-->
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/filterTabsLayout4">
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ENTJ"
-            android:id="@+id/entjFilter"
-            android:background="@color/darkerGray"
-            android:onClick="entjFilterTapped"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ENFJ"
-            android:id="@+id/enfjFilter"
-            android:background="@color/darkerGray"
-            android:onClick="enfjFilterTapped"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ENTP"
-            android:id="@+id/entpFilter"
-            android:background="@color/darkerGray"
-            android:onClick="entpFilterTapped"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="ENFP"
-            android:id="@+id/enfpFilter"
-            android:background="@color/darkerGray"
-            android:onClick="enfpFilterTapped"/>
-    </LinearLayout>
-
-    <!--다섯번째 레이아웃(filterTabsLayout5)-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/filterTabsLayout5">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="All"
-            android:id="@+id/allFilter"
-            android:textColor="@color/red"
-            android:background="@color/darkerGray"
-            android:onClick="allFilterTapped"/>
-
-    </LinearLayout>
+        android:orientation="horizontal">
+        <TableRow>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ENTJ"
+                android:background="@color/darkerGray" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ENFJ"
+                android:background="@color/darkerGray" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ENTP"
+                android:background="@color/darkerGray" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ENFP"
+                android:background="@color/darkerGray" />
+    </TableRow>
+    </TableLayout>
 
 
     <!--리사이클러뷰 -->

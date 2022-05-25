@@ -5,17 +5,19 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Filtering {
 
-        String name, mbti;
-        int image;
+        //profile 추가
+        private String profile;
+        private String name;
+        private String mbti;
 
         Filtering(){
 
         }
 
-        public Filtering(String name, String mbti, int image) {
+        public Filtering(String name, String mbti, String profile) {
             this.name = name;
             this.mbti = mbti;
-            this.image = image;
+            this.profile = profile;
         }
 
         public String getName() {
@@ -34,12 +36,12 @@ public class Filtering {
             this.mbti = mbti;
         }
 
-        public int getImage() {
-            return image;
-        }
+        public String getProfile() {
+            return profile;
+         }
 
-        public void setImage(int image) {
-            this.image = image;
+         public void setProfile(String profile) {
+            this.profile = profile;
         }
-    }
+}
 

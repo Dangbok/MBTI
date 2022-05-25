@@ -4,7 +4,6 @@ package com.example.login5.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,110 +21,14 @@ public final class ActivityMainBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final Button allFilter;
-
-  @NonNull
-  public final Button enfjFilter;
-
-  @NonNull
-  public final Button enfpFilter;
-
-  @NonNull
-  public final Button entjFilter;
-
-  @NonNull
-  public final Button entpFilter;
-
-  @NonNull
-  public final Button esfjFilter;
-
-  @NonNull
-  public final Button esfpFilter;
-
-  @NonNull
-  public final Button estjFilter;
-
-  @NonNull
-  public final Button estpFilter;
-
-  @NonNull
-  public final LinearLayout filterTabsLayout;
-
-  @NonNull
-  public final LinearLayout filterTabsLayout2;
-
-  @NonNull
-  public final LinearLayout filterTabsLayout3;
-
-  @NonNull
-  public final LinearLayout filterTabsLayout4;
-
-  @NonNull
-  public final LinearLayout filterTabsLayout5;
-
-  @NonNull
-  public final Button infjFilter;
-
-  @NonNull
-  public final Button infpFilter;
-
-  @NonNull
-  public final Button intjFilter;
-
-  @NonNull
-  public final Button intpFilter;
-
-  @NonNull
-  public final Button isfjFilter;
-
-  @NonNull
-  public final Button isfpFilter;
-
-  @NonNull
-  public final Button istjFilter;
-
-  @NonNull
-  public final Button istpFilter;
-
-  @NonNull
   public final RecyclerView recview;
 
   @NonNull
   public final Toolbar toolbar;
 
-  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull Button allFilter,
-      @NonNull Button enfjFilter, @NonNull Button enfpFilter, @NonNull Button entjFilter,
-      @NonNull Button entpFilter, @NonNull Button esfjFilter, @NonNull Button esfpFilter,
-      @NonNull Button estjFilter, @NonNull Button estpFilter,
-      @NonNull LinearLayout filterTabsLayout, @NonNull LinearLayout filterTabsLayout2,
-      @NonNull LinearLayout filterTabsLayout3, @NonNull LinearLayout filterTabsLayout4,
-      @NonNull LinearLayout filterTabsLayout5, @NonNull Button infjFilter,
-      @NonNull Button infpFilter, @NonNull Button intjFilter, @NonNull Button intpFilter,
-      @NonNull Button isfjFilter, @NonNull Button isfpFilter, @NonNull Button istjFilter,
-      @NonNull Button istpFilter, @NonNull RecyclerView recview, @NonNull Toolbar toolbar) {
+  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull RecyclerView recview,
+      @NonNull Toolbar toolbar) {
     this.rootView = rootView;
-    this.allFilter = allFilter;
-    this.enfjFilter = enfjFilter;
-    this.enfpFilter = enfpFilter;
-    this.entjFilter = entjFilter;
-    this.entpFilter = entpFilter;
-    this.esfjFilter = esfjFilter;
-    this.esfpFilter = esfpFilter;
-    this.estjFilter = estjFilter;
-    this.estpFilter = estpFilter;
-    this.filterTabsLayout = filterTabsLayout;
-    this.filterTabsLayout2 = filterTabsLayout2;
-    this.filterTabsLayout3 = filterTabsLayout3;
-    this.filterTabsLayout4 = filterTabsLayout4;
-    this.filterTabsLayout5 = filterTabsLayout5;
-    this.infjFilter = infjFilter;
-    this.infpFilter = infpFilter;
-    this.intjFilter = intjFilter;
-    this.intpFilter = intpFilter;
-    this.isfjFilter = isfjFilter;
-    this.isfpFilter = isfpFilter;
-    this.istjFilter = istjFilter;
-    this.istpFilter = istpFilter;
     this.recview = recview;
     this.toolbar = toolbar;
   }
@@ -157,138 +60,6 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.allFilter;
-      Button allFilter = ViewBindings.findChildViewById(rootView, id);
-      if (allFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.enfjFilter;
-      Button enfjFilter = ViewBindings.findChildViewById(rootView, id);
-      if (enfjFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.enfpFilter;
-      Button enfpFilter = ViewBindings.findChildViewById(rootView, id);
-      if (enfpFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.entjFilter;
-      Button entjFilter = ViewBindings.findChildViewById(rootView, id);
-      if (entjFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.entpFilter;
-      Button entpFilter = ViewBindings.findChildViewById(rootView, id);
-      if (entpFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.esfjFilter;
-      Button esfjFilter = ViewBindings.findChildViewById(rootView, id);
-      if (esfjFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.esfpFilter;
-      Button esfpFilter = ViewBindings.findChildViewById(rootView, id);
-      if (esfpFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.estjFilter;
-      Button estjFilter = ViewBindings.findChildViewById(rootView, id);
-      if (estjFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.estpFilter;
-      Button estpFilter = ViewBindings.findChildViewById(rootView, id);
-      if (estpFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.filterTabsLayout;
-      LinearLayout filterTabsLayout = ViewBindings.findChildViewById(rootView, id);
-      if (filterTabsLayout == null) {
-        break missingId;
-      }
-
-      id = R.id.filterTabsLayout2;
-      LinearLayout filterTabsLayout2 = ViewBindings.findChildViewById(rootView, id);
-      if (filterTabsLayout2 == null) {
-        break missingId;
-      }
-
-      id = R.id.filterTabsLayout3;
-      LinearLayout filterTabsLayout3 = ViewBindings.findChildViewById(rootView, id);
-      if (filterTabsLayout3 == null) {
-        break missingId;
-      }
-
-      id = R.id.filterTabsLayout4;
-      LinearLayout filterTabsLayout4 = ViewBindings.findChildViewById(rootView, id);
-      if (filterTabsLayout4 == null) {
-        break missingId;
-      }
-
-      id = R.id.filterTabsLayout5;
-      LinearLayout filterTabsLayout5 = ViewBindings.findChildViewById(rootView, id);
-      if (filterTabsLayout5 == null) {
-        break missingId;
-      }
-
-      id = R.id.infjFilter;
-      Button infjFilter = ViewBindings.findChildViewById(rootView, id);
-      if (infjFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.infpFilter;
-      Button infpFilter = ViewBindings.findChildViewById(rootView, id);
-      if (infpFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.intjFilter;
-      Button intjFilter = ViewBindings.findChildViewById(rootView, id);
-      if (intjFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.intpFilter;
-      Button intpFilter = ViewBindings.findChildViewById(rootView, id);
-      if (intpFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.isfjFilter;
-      Button isfjFilter = ViewBindings.findChildViewById(rootView, id);
-      if (isfjFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.isfpFilter;
-      Button isfpFilter = ViewBindings.findChildViewById(rootView, id);
-      if (isfpFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.istjFilter;
-      Button istjFilter = ViewBindings.findChildViewById(rootView, id);
-      if (istjFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.istpFilter;
-      Button istpFilter = ViewBindings.findChildViewById(rootView, id);
-      if (istpFilter == null) {
-        break missingId;
-      }
-
       id = R.id.recview;
       RecyclerView recview = ViewBindings.findChildViewById(rootView, id);
       if (recview == null) {
@@ -301,11 +72,7 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((LinearLayout) rootView, allFilter, enfjFilter, enfpFilter,
-          entjFilter, entpFilter, esfjFilter, esfpFilter, estjFilter, estpFilter, filterTabsLayout,
-          filterTabsLayout2, filterTabsLayout3, filterTabsLayout4, filterTabsLayout5, infjFilter,
-          infpFilter, intjFilter, intpFilter, isfjFilter, isfpFilter, istjFilter, istpFilter,
-          recview, toolbar);
+      return new ActivityMainBinding((LinearLayout) rootView, recview, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
