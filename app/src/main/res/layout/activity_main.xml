@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,14 +7,205 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <!--툴바(제목/필터버튼)-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:menu="@menu/menu_item">
+
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="left"-->
+        <!--            android:text="MBTI"-->
+        <!--            android:gravity="center"-->
+        <!--            android:textAllCaps="true"-->
+        <!--            android:textColor="@color/colorPrimaryDark"-->
+        <!--            android:textSize="30sp" />-->
+
+    </androidx.appcompat.widget.Toolbar>
 
 
+    <!--    첫번째 레이아웃(filterTabsLayout)-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:background="@color/darkerGray"
+                android:gravity="center"
+                android:text="ISTJ"
+                android:fontFamily="@font/kimnamyun" />
+
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:background="@color/darkerGray"
+                android:gravity="center"
+                android:text="ISTP"
+                android:fontFamily="@font/kimnamyun" />
+
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ISFJ"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ISFP"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+        </TableRow>
+
+    </TableLayout>
+
+    <!--두번째 레이아웃(filterTabsLayout2)-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="INTJ"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="INFJ"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="INTP"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="INFP"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+        </TableRow>
+    </TableLayout>
+
+    <!--세번째 레이아웃(filterTabsLayout3)-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TableRow>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ESTJ"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ESFJ"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ESTP"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ESFP"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+        </TableRow>
+    </TableLayout>
+
+    <!--네번째 레이아웃(filterTabsLayout4)-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TableRow>
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ENTJ"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ENFJ"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ENTP"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+            <TextView
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="ENFP"
+                android:background="@color/darkerGray"
+                android:fontFamily="@font/kimnamyun" />
+        </TableRow>
+    </TableLayout>
 
 
+    <!--리사이클러뷰 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

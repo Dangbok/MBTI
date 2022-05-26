@@ -17,7 +17,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -36,7 +35,7 @@ import com.google.firebase.storage.UploadTask;
 public class RegisterActivity extends AppCompatActivity {
 
     ImageView iv_image;
-    EditText et_email, et_pass, et_name, et_age, et_mbti, et_myself;
+    EditText et_email, et_pass, et_name, et_age, et_mbti, et_mobile;
     Button btn_register1;
     private FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
     private FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -51,12 +50,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //액션 바 등록하기
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("회원가입");
-
-        actionBar.setDisplayHomeAsUpEnabled(true); //뒤로가기버튼
-        actionBar.setDisplayShowHomeEnabled(true); //홈 아이콘
+//        //액션 바 등록하기
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("회원가입");
+//
+//        actionBar.setDisplayHomeAsUpEnabled(true); //뒤로가기버튼
+//        actionBar.setDisplayShowHomeEnabled(true); //홈 아이콘
 
 
         iv_image = findViewById(R.id.iv_image);
@@ -65,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
         et_name = findViewById(R.id.et_name);
         et_age = findViewById(R.id.et_age);
         et_mbti = findViewById(R.id.et_mbti);
-        et_myself = findViewById(R.id.et_myself);
+        et_mobile = findViewById(R.id.et_mobile);
         btn_register1 = findViewById(R.id.btn_register1);
 
 
@@ -94,11 +93,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String name = et_name.getText().toString().trim();
                 String age = et_age.getText().toString().trim();
                 String mbti = et_mbti.getText().toString().trim();
-                String myself = et_myself.getText().toString().trim();
+                String mobile = et_mobile.getText().toString().trim();
 
                 //프로필사진,이름,이메일,비밀번호 중 하나라도 비었으면 return
                 if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(name) || TextUtils.isEmpty(age) || TextUtils.isEmpty(mbti) ||
-                        TextUtils.isEmpty(myself) || imageUri == null) {
+                        TextUtils.isEmpty(mobile) || imageUri == null) {
                     Toast.makeText(RegisterActivity.this, "정보를 바르게 입력해 주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -134,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     user.name=name;
                                     user.age = Integer.parseInt(age);
                                     user.mbti = mbti;
-                                    user.myself = myself;
+                                    user.mobile = mobile;
                                     user.profile = imageUrl.getResult().toString();
 
                                     root.child(uid)
@@ -185,8 +184,8 @@ public class RegisterActivity extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cr.getType(uri));
     }
 
-    public boolean onSupportNavigateUp(){
-        onBackPressed();; // 뒤로가기 버튼이 눌렸을시
-        return super.onSupportNavigateUp(); // 뒤로가기 버튼
-    }
+//    public boolean onSupportNavigateUp(){
+//        onBackPressed();; // 뒤로가기 버튼이 눌렸을시
+//        return super.onSupportNavigateUp(); // 뒤로가기 버튼
+//    }
 }

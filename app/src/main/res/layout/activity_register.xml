@@ -9,15 +9,19 @@
 
     <EditText
         android:id="@+id/et_email"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/round_shape"
+        android:drawableStart="@drawable/document_ic"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="이메일"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:paddingLeft="15dp"
         app:layout_constraintBottom_toTopOf="@+id/et_pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -26,10 +30,14 @@
 
     <EditText
         android:id="@+id/et_pass"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
+        android:paddingLeft="15dp"
+        android:drawableStart="@drawable/document_ic"
+        android:drawablePadding="10dp"
+        android:background="@drawable/round_shape"
         android:hint="비밀번호"
         android:inputType="textPassword"
         android:minHeight="48dp"
@@ -39,10 +47,14 @@
 
     <EditText
         android:id="@+id/et_name"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
+        android:paddingLeft="15dp"
+        android:drawableStart="@drawable/document_ic"
+        android:drawablePadding="10dp"
+        android:background="@drawable/round_shape"
         android:hint="이름"
         android:inputType="textPersonName"
         android:minHeight="48dp"
@@ -52,10 +64,14 @@
 
     <EditText
         android:id="@+id/et_age"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
+        android:paddingLeft="15dp"
+        android:drawableStart="@drawable/document_ic"
+        android:drawablePadding="10dp"
+        android:background="@drawable/round_shape"
         android:hint="나이"
         android:inputType="number"
         android:minHeight="48dp"
@@ -65,29 +81,37 @@
 
     <EditText
         android:id="@+id/et_mbti"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:paddingLeft="15dp"
+        android:drawableStart="@drawable/document_ic"
+        android:drawablePadding="10dp"
+        android:background="@drawable/round_shape"
         android:hint="MBTI"
-        android:inputType="text"
+        android:inputType="textCapCharacters"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/et_age"
         app:layout_constraintStart_toStartOf="@+id/et_age"
         app:layout_constraintTop_toBottomOf="@+id/et_age" />
 
     <EditText
-        android:id="@+id/et_myself"
-        android:layout_width="wrap_content"
+        android:id="@+id/et_mobile"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="자기소개"
-        android:inputType="text"
+        android:paddingLeft="15dp"
+        android:drawableStart="@drawable/document_ic"
+        android:drawablePadding="10dp"
+        android:background="@drawable/round_shape"
+        android:hint="전화번호"
+        android:inputType="phone"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/et_mbti"
         app:layout_constraintStart_toStartOf="@+id/et_mbti"
@@ -95,38 +119,30 @@
 
     <Button
         android:id="@+id/btn_register1"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="#FF9800"
+        android:backgroundTint="#000000"
+        android:fontFamily="@font/mapopeacefull"
         android:text="회원가입"
-        app:layout_constraintEnd_toEndOf="@+id/et_myself"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/et_myself"
-        app:layout_constraintTop_toBottomOf="@+id/et_myself" />
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/et_mobile"
+        app:layout_constraintStart_toStartOf="@+id/et_mobile"
+        app:layout_constraintTop_toBottomOf="@+id/et_mobile" />
 
     <ImageView
         android:id="@+id/iv_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
-
-
-    <!--    <Button-->
-    <!--        android:id="@+id/btn_im"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="사진 등록하기"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        tools:layout_editor_absoluteY="96dp" />-->
+        app:srcCompat="@drawable/photo_upload_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

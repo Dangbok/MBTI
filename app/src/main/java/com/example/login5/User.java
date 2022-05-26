@@ -9,20 +9,20 @@ public class User {
     public String name;
     public int age;
     public String mbti;
-    public String myself;
+    public String mobile;
     public String profile;
 
     User(){}
 
     // Hashmap
-    public User(String uid,String email,String pass,String name,int age,String mbti,String myself,String profile){
+    public User(String uid,String email,String pass,String name,int age,String mbti,String mobile,String profile){
         this.uid=uid;
         this.email=email;
         this.pass=pass;
         this.name=name;
         this.age=age;
         this.mbti=mbti;
-        this.myself=myself;
+        this.mobile=mobile;
         this.profile=profile;
     }
 
@@ -73,12 +73,12 @@ public class User {
         this.mbti = mbti;
     }
 
-    public String getMyself() {
-        return myself;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setMyself(String myself) {
-        this.myself = myself;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getProfile() {
